@@ -17,3 +17,7 @@ This project is open to contributions, as well as feedback. But I recommend crea
 ## Idea
 
 I got this idea from a friend of mine from the Tantei Wa Mou, Shindeiru Discord server. His idea was to make something like Plex, but for Light Novels. Users can have their LN PDFs scattered all across their computers, add them to the application, and access them through the centralised UI and read them. Later, I plan on adding mobile support so that users on the same network (or external network with IP) can read LNs on the go.
+
+## LN Data
+
+If you don't want to run the data scraper and wait for 7 hours like I did, you can use download the CSV file of the LN list from this [link](https://cdn.discordapp.com/attachments/774289170545377290/1013840731984637962/novels_data.csv) (surprisingly, the total size is less than 5 MB). Save that file as `novels_data.csv` under `data-api/data` directory. Now you can run the DB loader to store this data in a PostgreSQL database (check out the [Data API README](data-api/README.md) to see how you can run it)
