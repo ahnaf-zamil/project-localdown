@@ -1,0 +1,6 @@
+flask
+flask-sqlalchemy
+python-dotenv
+flask-inputs
+waitress
+flask_cors

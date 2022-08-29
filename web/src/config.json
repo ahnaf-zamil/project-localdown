@@ -1,0 +1,4 @@
+{
+  "DATA_API": "//localhost:8000",
+  "LOCAL_API": "//localhost:5000"
+}

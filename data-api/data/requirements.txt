@@ -1,0 +1,3 @@
+cfscrape
+bs4
+pandas
