@@ -50,13 +50,13 @@ def add_novel(novel_id):
         return jsonify({"status": "removed"})
 
     cached_novel = get_cached_novel(novel_id)
-    try:
-        if not cached_novel:
-            # Caching novel info so that it doesnt have to be refetched
-            data = get_novel_data(novel_id, status=True)
-            cache_novel(existing_entry.id, data)
-    except:
-        abort(404)
+    # try:
+    if not cached_novel:
+        # Caching novel info so that it doesnt have to be refetched
+        data = get_novel_data(novel_id)
+        cache_novel(novel_id, data)
+    # except:
+    # abort(404)
 
     new_novel = Library(id=novel_id)
     db.session.add(new_novel)

@@ -1,17 +1,25 @@
 import argparse
+import os
 from src.app import make_app, db
 
 app = make_app()
 HOST = "*:5000"
 
 
-def main(args):
-    if args.migrate:
-        from src.models import Library, NovelCache
+def migrate_db():
+    print("Migrating DB")
+    from src.models import Library, NovelCache
 
-        with app.app_context():
-            db.create_all()
-        return
+    with app.app_context():
+        db.create_all()
+
+
+def main(args):
+    if not os.path.exists("./data.db"):
+        migrate_db()
+
+    if args.migrate:
+        return migrate_db()
     if args.debug:
         app.run(debug=True)
     else:
