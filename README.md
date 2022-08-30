@@ -25,3 +25,9 @@ If you don't want to run the data scraper and create your own dataset like I did
 Save that file as `novels_data.csv` under `data-api/data` directory. Now you can run the DB loader to store this data in a PostgreSQL database (check out the [Data API README](data-api/README.md) to see how you can run it)
 
 **Edit:** I have hosted my own instance of the Data API, which you can find at `https://api.ahnafzamil.com/localdown`
+
+## Credits
+
+I would like to thank these people for helping me with this
+
+- Dominatroy#0731 - For providing me with emotional support and brain damage
