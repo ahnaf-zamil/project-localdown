@@ -1,4 +1,4 @@
 {
-  "DATA_API": "//localhost:8000",
+  "DATA_API": "https://api.ahnafzamil.com/localdown",
   "LOCAL_API": "//localhost:5000"
 }
