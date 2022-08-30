@@ -4,3 +4,4 @@ python-dotenv
 flask-inputs
 waitress
 flask_cors
+requests
