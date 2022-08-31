@@ -4,6 +4,7 @@ from .lib.ext import db
 class Library(db.Model):
     __tablename__ = "library"
     id = db.Column(db.Integer, primary_key=True)
+    added_at = db.Column(db.DateTime, nullable=False)
 
 
 class NovelCache(db.Model):

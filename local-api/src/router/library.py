@@ -1,15 +1,16 @@
-from flask import Blueprint, jsonify
+from datetime import datetime
+from flask import Blueprint, jsonify, abort
 from ..models import Library, db
 from ..lib.api import get_novel_data
 from ..utils import cache_novel, get_cached_novel
-from requests.exceptions import JSONDecodeError
+from sqlalchemy import desc
 
 router = Blueprint("library", __name__, url_prefix="/library")
 
 
 @router.get("/")
 def get_novel_library():
-    novel_ids = Library.query.all()
+    novel_ids = Library.query.order_by(desc(Library.added_at)).all()
     return jsonify([i.id for i in novel_ids])
 
 
@@ -30,7 +31,7 @@ def add_novel(novel_id):
             abort(404)
         cache_novel(novel_id, data)
 
-    new_novel = Library(id=novel_id)
+    new_novel = Library(id=novel_id, added_at=datetime.now())
     db.session.add(new_novel)
     db.session.commit()
 

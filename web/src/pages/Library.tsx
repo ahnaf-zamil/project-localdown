@@ -67,6 +67,7 @@ export const Librarypage: React.FC = () => {
 
         setNovels((currentNovels) => [...currentNovels, resp.data]);
       }
+      setLoading(false);
     })();
   }, []);
 
@@ -92,19 +93,22 @@ export const Librarypage: React.FC = () => {
             search it below {":)"}
           </h2>
         </div>
-        <div className="flex flex-wrap justify-center xl:justify-between gap-16">
+        <div
+          className={`w-full flex flex-wrap gap-x-16 gap-y-8 justify-center lg:justify-start`}
+        >
           {novels.map((novel, i) => {
             return (
-              <div
-                onClick={() => {
-                  window.history.replaceState(null, "", `/library/${novel.id}`);
-                  setViewNovel(novel);
-                }}
-                className="cursor-pointer w-[250px] p-4 flex flex-col items-center"
-              >
+              <div className="w-[290px] p-4 flex flex-col items-center">
                 <img
-                  width="250"
-                  className="transition hover:shadow-xl"
+                  onClick={() => {
+                    window.history.replaceState(
+                      null,
+                      "",
+                      `/library/${novel.id}`
+                    );
+                    setViewNovel(novel);
+                  }}
+                  className="cursor-pointer transition hover:shadow-xl"
                   src={novel.cover_url}
                   alt=""
                 />
