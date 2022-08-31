@@ -23,7 +23,7 @@ export const NovelViewpage: React.FC = () => {
   const addToLibrary = async () => {
     setLoading(true);
     const resp = await httpClient.post(
-      config.LOCAL_API + `/novels/add/${novel_id}`
+      config.LOCAL_API + `/library/add/${novel_id}`
     );
     setNovel({
       ...novel,

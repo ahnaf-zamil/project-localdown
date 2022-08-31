@@ -23,7 +23,9 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
-*.log
 *.pid
 nginx/html/*
+nginx/logs/*
+!nginx/logs/.gitkeep
+!nginx/html/.gitkeep
 bin/
