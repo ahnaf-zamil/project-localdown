@@ -9,4 +9,7 @@ def get_novel_data(novel_id: int, status: bool = False):
     if that novel exists in the database or not.
     """
     resp = requests.get(os.environ["DATA_API"] + f"/novels/get/{novel_id}")
+
+    if resp.status_code != 200:
+        return None
     return resp.json() if not status else resp.status_code

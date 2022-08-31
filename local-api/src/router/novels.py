@@ -1,6 +1,7 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, abort, request
 from ..models import Library
 from ..lib.api import get_novel_data
+from ..lib.serialisers import novel_to_dict
 from ..utils import cache_novel, get_cached_novel
 
 router = Blueprint("novels", __name__, url_prefix="/novels")
@@ -11,17 +12,11 @@ def get_novel(novel_id):
     # Checking for existing novel cache
     novel = get_cached_novel(novel_id)
     if novel:
-        data = {
-            "id": novel.id,
-            "title": novel.title,
-            "cover_url": novel.cover_url,
-            "authors": novel.authors.capitalize(),
-            "genres": novel.genres,
-            "start_year": novel.start_year,
-            "other_names": novel.other_names,
-        }
+        data = novel_to_dict(novel)
     else:
         data = get_novel_data(novel_id)
+        if data is None:
+            abort(404)
         # Caching novel for later use
         cache_novel(data["id"], data)
 

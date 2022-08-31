@@ -21,6 +21,11 @@ export const NovelViewpage: React.FC = () => {
   }, []);
 
   const addToLibrary = async () => {
+    if (novel?.added_to_library) {
+      window.location.href = `/library/${novel.id}`;
+      return;
+    }
+
     setLoading(true);
     const resp = await httpClient.post(
       config.LOCAL_API + `/library/add/${novel_id}`
@@ -54,10 +59,10 @@ export const NovelViewpage: React.FC = () => {
             >
               <i
                 className={`fa-solid ${
-                  novel.added_to_library ? "fa-check" : "fa-plus"
+                  novel.added_to_library ? "fa-book" : "fa-plus"
                 }`}
               ></i>{" "}
-              Add{novel.added_to_library ? "ed" : ""} to Library
+              {novel.added_to_library ? "Read Novel" : "Add to Library"}
             </button>
           </div>
           <div className="roboto grow">

@@ -7,3 +7,8 @@
 .roboto {
   font-family: "Roboto Condensed", sans-serif;
 }
+
+.slide-pane__header {
+  background: rgb(31 41 55) !important;
+  color: white;
+}
