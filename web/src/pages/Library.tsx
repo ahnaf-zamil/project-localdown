@@ -5,7 +5,7 @@ import config from "../config.json";
 import { Loader } from "../components/Loader";
 import SlidingPane from "react-sliding-pane";
 import { ShowLibraryNovel } from "../components/ShowLibraryNovel";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const shouldStopLoading = (index: number, length: number) => {
   if (length <= 10 && index + 1 != length) {
