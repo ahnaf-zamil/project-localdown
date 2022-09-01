@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { getNovel, getNovelIds, httpClient } from "../http";
+import { getNovel, getNovelIds } from "../http";
 import { TNovelFull } from "../types";
 import { Loader } from "../components/Loader";
 import SlidingPane from "react-sliding-pane";
 import { LibraryNovelPage } from "./LibraryNovel";
 
 const shouldStopLoading = (index: number, length: number) => {
-  if (length <= 10 && index + 1 != length) {
+  if (length <= 10 && index + 1 !== length) {
     return false;
   } else if (index === Math.floor(length / 2)) {
     return true;
@@ -37,7 +37,7 @@ export const LibraryPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative container p-4 h-full">
+    <div className="relative container p-4 h-full bg-inherit">
       {loading && <Loader fullScreen={true} />}
       <SlidingPane
         isOpen={viewNovel != null}
@@ -52,8 +52,8 @@ export const LibraryPage: React.FC = () => {
       </SlidingPane>
       <div className="w-11/12 flex flex-col roboto h-full items-center">
         <div className="w-full mb-10">
-          <h1 className="text-3xl mb-2">Library</h1>
-          <h2 className="text-xl text-gray-800">
+          <h1 className="text-3xl mb-2 text-header">Library</h1>
+          <h2 className="text-xl text-gray-200">
             All of the books you saved are here. If you can't find something,
             search it below {":)"}
           </h2>

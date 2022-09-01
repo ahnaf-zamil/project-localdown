@@ -10,7 +10,7 @@ interface Props {
 export const AppPage: React.FC<Props> = ({ page, title }) => {
   return (
     <div>
-      <div className="bg-gray-200 h-screen w-full flex">
+      <div className="bg-gradient-to-b from-dark-500 to-dark-700 h-screen w-full flex">
         <Sidebar />
         <section className="grow flex flex-col">
           <Topbar title={title} />

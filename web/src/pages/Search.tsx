@@ -36,14 +36,14 @@ const Searchbar: React.FC = () => {
           }
         }}
         type="search"
-        className="focus:outline-none block p-4 pl-10 w-full text-sm text-gray-900 rounded-tl-lg rounded-bl-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+        className="focus:outline-none block p-4 pl-10 w-full text-sm text-gray-300 rounded-tl-lg rounded-bl-lg border border-gray-600 focus:ring-blue-500 focus:border-blue-500 bg-dark-300 focus:ring-blue-500 focus:border-blue-500"
         placeholder="Search Light Novels..."
         required
       />
       <button
         type="submit"
         onClick={() => (window.location.href = `/search?q=${query}`)}
-        className="text-white bg-sky-700 hover:bg-sky-800 focus:outline-none font-medium rounded-tr-lg rounded-br-lg px-6 py-2"
+        className="text-white bg-sky-600 hover:bg-sky-700 focus:outline-none font-medium rounded-tr-lg rounded-br-lg px-6 py-2"
       >
         Search
       </button>
@@ -88,15 +88,15 @@ export const SearchPage: React.FC = () => {
         {results !== null ? (
           <div className="flex flex-col items-center">
             {results.length === 0 ? (
-              <h1 className="text-center mt-12 text-3xl text-gray-600">
+              <h1 className="text-center mt-12 text-3xl text-gray-300">
                 No results found for '{query}'
               </h1>
             ) : (
               <>
-                <h1 className="my-12 text-2xl text-gray-600">
+                <h1 className="my-12 text-2xl text-gray-300">
                   Results for '{query}'
                 </h1>
-                <div className="w-11/12 flex flex-wrap justify-center lg:justify-between gap-16">
+                <div className="w-full flex flex-wrap gap-x-16 gap-y-8 justify-center lg:justify-start">
                   {results.map((novel, i) => (
                     <a
                       href={`/novels/${novel.id}`}

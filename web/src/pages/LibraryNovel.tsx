@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Loader } from "../components/Loader";
-import { getNovel, httpClient, removeFromLibrary } from "../http";
+import { getNovel, removeFromLibrary } from "../http";
 import { TNovelFull } from "../types";
-import config from "../config.json";
 import { ShowNovelContent } from "../components/ShowNovelContent";
 
 interface Props {
@@ -28,10 +27,10 @@ export const LibraryNovelPage: React.FC<Props> = ({ novelObj }) => {
   }, []);
 
   return (
-    <div className="relative container p-2 h-full bg-gray-200">
+    <div className="relative container p-2 h-full bg-dark-500">
       {loading && <Loader fullScreen={true} />}
       {novel && (
-        <div className="flex gap-10 roboto h-full">
+        <div className={`${novelObj && "p-4"} flex gap-10 roboto h-full`}>
           <div className="flex flex-col h-full">
             <img
               width="350"
@@ -50,12 +49,12 @@ export const LibraryNovelPage: React.FC<Props> = ({ novelObj }) => {
             <div className="mb">
               <h1 className="text-3xl mb-4">{novel.title}</h1>
 
-              <h2 className="text-gray-700 mt-6">Author</h2>
+              <h2 className="text-gray-400 mt-6">Author</h2>
               <p className="text-lg">{novel.authors}</p>
-              <h2 className="text-gray-700 mt-6">Released On</h2>
+              <h2 className="text-gray-400 mt-6">Released On</h2>
               <p className="text-lg">{novel.start_year}</p>
 
-              <h2 className="text-gray-700 mt-6">Genres</h2>
+              <h2 className="text-gray-400 mt-6">Genres</h2>
               <p className="text-lg">
                 {novel.genres
                   .toLowerCase()
@@ -64,7 +63,7 @@ export const LibraryNovelPage: React.FC<Props> = ({ novelObj }) => {
                   .join(", ")}
               </p>
             </div>
-            <h1 className="text-gray-700 text-lg my-6">Volumes/Chapters</h1>
+            <h1 className="text-gray-400 text-lg my-6">Volumes/Chapters</h1>
             <ShowNovelContent novelId={novel.id.toString()} />
           </div>
         </div>

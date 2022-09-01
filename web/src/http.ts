@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TNovelFull, TNovelPreview } from "./types";
+import { TNovelFull } from "./types";
 import config from "./config.json";
 
 export const httpClient = axios.create();

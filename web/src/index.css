@@ -8,11 +8,15 @@
   font-family: "Roboto Condensed", sans-serif;
 }
 
+* {
+  color: white;
+}
+
 .slide-pane__header {
-  background: rgb(31 41 55) !important;
+  background: #101014 !important;
   color: white;
 }
 
 .slide-pane__content {
-  background: rgb(229 231 235) !important;
+  padding: 0 !important;
 }

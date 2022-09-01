@@ -67,17 +67,17 @@ export const NovelViewPage: React.FC = () => {
           </div>
           <div className="roboto grow">
             <h1 className="text-3xl mb-4">{novel.title}</h1>
-            <h2 className="text-gray-700">Also known as,</h2>
+            <h2 className="text-gray-400">Also known as,</h2>
             {novel.other_names.split(", ").map((name, i) => (
               <p className="text-lg">{name}</p>
             ))}
-            <h2 className="text-gray-700 mt-8">Author</h2>
+            <h2 className="text-gray-400 mt-8">Author</h2>
             <p className="text-lg">{novel.authors}</p>
-            <h2 className="text-gray-700 mt-6">Released On</h2>
+            <h2 className="text-gray-400 mt-6">Released On</h2>
             <p className="text-lg">{novel.start_year}</p>
-            <h2 className="text-gray-700 mt-6">Publisher</h2>
+            <h2 className="text-gray-400 mt-6">Publisher</h2>
             <p className="text-lg">{novel.publisher}</p>
-            <h2 className="text-gray-700 mt-6">Genres</h2>
+            <h2 className="text-gray-400 mt-6">Genres</h2>
             <p className="text-lg">
               {novel.genres
                 .toLowerCase()
