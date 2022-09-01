@@ -1,18 +1,12 @@
 import React from "react";
-import { httpClient } from "../http";
+import { removeFromLibrary } from "../http";
 import { TNovelFull } from "../types";
-import config from "../config.json";
 
 export interface Props {
   novel: TNovelFull;
 }
 
 export const ShowLibraryNovel: React.FC<Props> = ({ novel }) => {
-  const removeFromLibrary = async () => {
-    await httpClient.post(config.LOCAL_API + `/library/add/${novel.id}`);
-    window.location.href = "/library";
-  };
-
   return (
     <>
       {novel && (
@@ -25,7 +19,7 @@ export const ShowLibraryNovel: React.FC<Props> = ({ novel }) => {
               alt=""
             />
             <button
-              onClick={removeFromLibrary}
+              onClick={() => removeFromLibrary(novel.id.toString())}
               className={`bg-rose-500 hover:bg-rose-600 w-full text-white text-xl p-4 rounded mt-6 transition duration-300 flex items-center gap-5 justify-center`}
             >
               <i className={`fa-solid fa-trash`}></i> Remove from Library

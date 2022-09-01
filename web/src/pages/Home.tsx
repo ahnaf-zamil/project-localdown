@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Homepage: React.FC = () => {
+export const HomePage: React.FC = () => {
   return (
     <div>
       <div className="roboto">

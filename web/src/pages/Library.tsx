@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { httpClient } from "../http";
+import { getNovel, getNovelIds, httpClient } from "../http";
 import { TNovelFull } from "../types";
-import config from "../config.json";
 import { Loader } from "../components/Loader";
 import SlidingPane from "react-sliding-pane";
-import { ShowLibraryNovel } from "../components/ShowLibraryNovel";
-import { useParams } from "react-router-dom";
+import { LibraryNovelPage } from "./LibraryNovel";
 
 const shouldStopLoading = (index: number, length: number) => {
   if (length <= 10 && index + 1 != length) {
@@ -18,54 +16,21 @@ const shouldStopLoading = (index: number, length: number) => {
   return false;
 };
 
-export const Librarypage: React.FC = () => {
+export const LibraryPage: React.FC = () => {
   const [viewNovel, setViewNovel] = useState<TNovelFull | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [novels, setNovels] = useState<Array<TNovelFull>>([]);
-  let { novel_id } = useParams();
 
   useEffect(() => {
-    const getNovelIds = async (): Promise<Array<number>> => {
-      const resp = await httpClient.get(config.LOCAL_API + "/library/");
-      return resp.data;
-    };
-
-    const getURLParamNovel = async () => {
-      // Make it a first request if there's a novel ID in URL param
-      if (novel_id) {
-        try {
-          const resp = await httpClient.get(
-            config.LOCAL_API + `/novels/get/${novel_id}`
-          );
-
-          setViewNovel(resp.data);
-          setNovels((currentNovels) => [...currentNovels, resp.data]);
-        } catch {
-          novel_id = undefined;
-        }
-      }
-    };
-
     (async () => {
-      await getURLParamNovel();
-
       const novelIds = await getNovelIds();
       for (let i = 0; i < novelIds.length; i++) {
         if (shouldStopLoading(i, novelIds.length)) {
           setLoading(false);
         }
 
-        if (novel_id == novelIds[i].toString()) {
-          // If current iterated novel ID is same as arg novel ID
-          // then don't make request because it has been made before
-          continue;
-        }
-
-        const resp = await httpClient.get(
-          config.LOCAL_API + `/novels/get/${novelIds[i]}?preview=true`
-        );
-
-        setNovels((currentNovels) => [...currentNovels, resp.data]);
+        const data = await getNovel(novelIds[i].toString());
+        setNovels((currentNovels) => [...currentNovels, data]);
       }
       setLoading(false);
     })();
@@ -80,10 +45,10 @@ export const Librarypage: React.FC = () => {
         subtitle={`Novel ID: ${viewNovel != null ? viewNovel?.id : ""}`}
         onRequestClose={() => {
           setViewNovel(null);
-          window.history.replaceState(null, "", "/library");
         }}
       >
-        <ShowLibraryNovel novel={viewNovel!} />
+        {/* <ShowLibraryNovel novel={viewNovel!} /> */}
+        <LibraryNovelPage novelObj={viewNovel} />
       </SlidingPane>
       <div className="w-11/12 flex flex-col roboto h-full items-center">
         <div className="w-full mb-10">
@@ -101,11 +66,6 @@ export const Librarypage: React.FC = () => {
               <div className="w-[290px] p-4 flex flex-col items-center">
                 <img
                   onClick={() => {
-                    window.history.replaceState(
-                      null,
-                      "",
-                      `/library/${novel.id}`
-                    );
                     setViewNovel(novel);
                   }}
                   className="cursor-pointer transition hover:shadow-xl"

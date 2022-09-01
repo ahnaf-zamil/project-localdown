@@ -5,7 +5,7 @@ import { TNovelFull } from "../types";
 import config from "../config.json";
 import { Loader } from "../components/Loader";
 
-export const NovelViewpage: React.FC = () => {
+export const NovelViewPage: React.FC = () => {
   const [novel, setNovel] = useState<TNovelFull | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const { novel_id } = useParams();

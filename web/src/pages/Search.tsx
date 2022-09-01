@@ -51,7 +51,7 @@ const Searchbar: React.FC = () => {
   );
 };
 
-export const Searchpage: React.FC = () => {
+export const SearchPage: React.FC = () => {
   const [results, setResults] = useState<Array<TNovelPreview> | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const args = useLocation().search;
