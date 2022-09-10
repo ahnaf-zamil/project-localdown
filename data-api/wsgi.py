@@ -11,6 +11,8 @@ def main():
             from src.models import Novel
 
             with app.app_context():
+                # Enabling triagram extension for fuzzy search with typos
+                db.session.execute("CREATE EXTENSION IF NOT EXISTS pg_trgm")
                 db.create_all()
         else:
             print(f"Invalid argument: ${args[1]}")
