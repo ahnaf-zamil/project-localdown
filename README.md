@@ -2,9 +2,6 @@
 
 A Plex-like project for accessing locally downloaded Light Novels through a centralised UI. Sources LN data from novelupdates.com
 
-## ATTENTION
-
-The development of this project has been moved to [GitLab](https://gitlab.com/ahnaf-zamil/project-localdown). No PR or issues on this repo will be responded to, please make them on the GitLab repo. New releases will be on GitLab as well. Thank you :) 
 
 ## Structure
 
